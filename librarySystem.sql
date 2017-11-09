@@ -54,6 +54,7 @@ CREATE TABLE `book` (
   `Title` varchar(200) DEFAULT NULL,
   `Edition` varchar(10) DEFAULT NULL,
   `Publisher` varchar(100) DEFAULT NULL,
+  `Author` varchar(200) DEFAULT NULL,
   `Dept` varchar(100) DEFAULT NULL,
   `Cost` decimal(6,2) DEFAULT '0.00',
   `IsReserved` varchar(10) DEFAULT NULL,
@@ -69,7 +70,6 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
-INSERT INTO `book` VALUES ('12346','bbbbb','6','bbbbb','Mechanical Engineering',60.00,'yes',4,4);
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,4 +163,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-09  7:41:55
+-- Dump completed on 2017-11-09 23:38:00

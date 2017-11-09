@@ -7,11 +7,12 @@ session_start();
 $link = mysqli_connect($host,$user,$pass) or die( "Unable to connect");
 mysqli_select_db($link, $database) or die( "Unable to select database");
 
-if(isset($_POST['isbn']) and isset($_POST['title']) and isset($_POST['edition']) and isset($_POST['publisher']) and isset($_POST['cost']) and isset($_POST['noofcopies']))  {
+if(isset($_POST['isbn']) and isset($_POST['title']) and isset($_POST['author']) and isset($_POST['edition']) and isset($_POST['publisher']) and isset($_POST['cost']) and isset($_POST['noofcopies']))  {
 	$isbn = $_POST['isbn'];
 	$title = $_POST['title'];
 	$edition = $_POST['edition'];
 	$publisher = $_POST['publisher'];
+	$author = $_POST['author'];
 	$cost = $_POST['cost'];
 	$noofcopies = $_POST['noofcopies'];
 	$AvailableCopy = $noofcopies;
@@ -22,7 +23,7 @@ if(isset($_POST['isbn']) and isset($_POST['title']) and isset($_POST['edition'])
 	$result0 = mysqli_query ($link, $check_qry)  or die(mysqli_error($link));
 	if(mysqli_num_rows($result0) > 0) echo 'Book with this ISBN already exists, Try Updating!';
 	else{
-		$insertStatement1 = "INSERT INTO book (ISBN, Title, Edition, Publisher, Dept, Cost, IsReserved, NoOfCopy, AvailableCopy) VALUES ('$isbn', '$title', '$edition', '$publisher', '$dept', '$cost', '$isreserved', '$noofcopies', '$AvailableCopy')";
+		$insertStatement1 = "INSERT INTO book (ISBN, Title, Edition, Publisher, Author, Dept, Cost, IsReserved, NoOfCopy, AvailableCopy) VALUES ('$isbn', '$title', '$edition', '$publisher', '$author', '$dept', '$cost', '$isreserved', '$noofcopies', '$AvailableCopy')";
 		$result1 = mysqli_query ($link, $insertStatement1)  or die(mysqli_error($link));
 	 
 		if($result1 == false ) {
@@ -103,6 +104,11 @@ if(isset($_POST['isbn']) and isset($_POST['title']) and isset($_POST['edition'])
 <tr>
     <td>Publisher</td>
     <td><input type="text" name="publisher" required/></td>
+</tr>
+
+<tr>
+    <td>Authors</td>
+    <td><input type="text" name="author" required/></td>
 </tr>
 
 <tr>

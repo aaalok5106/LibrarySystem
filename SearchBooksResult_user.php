@@ -14,7 +14,7 @@ if($_POST['isbn'] != null)  { // ISBN
 	$isbn = $_POST['isbn'];  
 	// store session data
 	//Our SQL Query
-	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Dept, AvailableCopy From book Where ISBN = '$isbn' AND IsReserved = 0";
+	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where ISBN = '$isbn' AND IsReserved = 0";
 	//Run our sql query
     $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link));
     
@@ -29,7 +29,7 @@ if($_POST['isbn'] != null)  { // ISBN
 	// store session data
 	$_SESSION['title']=$title;
 	//Our SQL Query
-	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Dept, AvailableCopy From book Where Title like '%$title%' AND IsReserved = 0";
+	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where Title like '%$title%' AND IsReserved = 0";
 	 //Run our sql query
 	   $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link));  
 		if($result1 == false)
@@ -43,7 +43,7 @@ if($_POST['isbn'] != null)  { // ISBN
 	// store session data
 	$_SESSION['dept']=$dept;
 	//Our SQL Query
-	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Dept, AvailableCopy From book Where Title like '%$dept%' AND IsReserved = 0";
+	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where Title like '%$dept%' AND IsReserved = 0";
 	 //Run our sql query
 	   $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link));  
 		if($result1 == false)
@@ -57,15 +57,17 @@ if($_POST['isbn'] != null)  { // ISBN
 	// store session data
 	$_SESSION['author']=$author;
 	//Our SQL Query
-	
-	
-	
-	
-	
+	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where Author like '%$author%' AND IsReserved = 0";
+	 //Run our sql query
+	   $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link));  
+		if($result1 == false)
+		{
+			echo 'The query by Author failed.';
+			exit();
+		}	
 		
-				
 } else {
-	header('Location: UserSummary.php');
+	header('Location: SearchBooks_user.php');
 }
 $numrow = mysqli_num_rows($result1);
 if($numrow == 0){
@@ -82,6 +84,7 @@ if($numrow == 0){
     <th>Title of the book</th>
     <th>Edition</th>
     <th>Publisher</th>
+    <th>Authors</th>
     <th>Department</th>
     <th># copies available</th>
 
@@ -92,6 +95,7 @@ if($numrow == 0){
 	$Title = $row['Title'];
 	$Edition = $row['Edition'];
 	$publisher = $row['Publisher'];
+	$Author = $row['Author'];
 	$dept = $row['Dept'];
 	$available = $row['AvailableCopy'];
   ?>
@@ -100,6 +104,7 @@ if($numrow == 0){
     <td><?php echo $Title; ?></td>
     <td><?php echo $Edition; ?></td>
     <td><?php echo $publisher; ?></td>
+    <td><?php echo $Author; ?></td>
     <td><?php echo $dept; ?></td>
     <td><?php echo $available; ?></td>
   </tr>

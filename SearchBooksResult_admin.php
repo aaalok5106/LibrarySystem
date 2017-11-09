@@ -14,7 +14,7 @@ if($_POST['isbn'] != null)  { // ISBN
 	$isbn = $_POST['isbn'];  
 	// store session data
 	//Our SQL Query
-	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Dept, Cost, NoOfCopy, AvailableCopy From book Where ISBN = '$isbn' AND IsReserved = 'no'";
+	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, Cost, NoOfCopy, AvailableCopy From book Where ISBN = '$isbn' AND IsReserved = 'no'";
 	//Run our sql query
     $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link));	
 	if($result1 == false)
@@ -23,7 +23,7 @@ if($_POST['isbn'] != null)  { // ISBN
 		exit();
 	}
 	//Our SQL Query
-	$sql_query2 = "Select ISBN, Title, Edition, Publisher, Dept, Cost, NoOfCopy, AvailableCopy From book Where ISBN = '$isbn' AND IsReserved = 'yes'";
+	$sql_query2 = "Select ISBN, Title, Edition, Publisher, Author, Dept, Cost, NoOfCopy, AvailableCopy From book Where ISBN = '$isbn' AND IsReserved = 'yes'";
 	//Run our sql query
    $result2 = mysqli_query ($link, $sql_query2)  or die(mysqli_error($link));  
 	if($result2 == false)
@@ -38,7 +38,7 @@ if($_POST['isbn'] != null)  { // ISBN
 	// store session data
 	$_SESSION['dept']=$dept;
 	//Our SQL Query
-	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Dept, Cost, NoOfCopy, AvailableCopy From book Where Dept like '%$dept%' AND IsReserved = 'no'";
+	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, Cost, NoOfCopy, AvailableCopy From book Where Dept like '%$dept%' AND IsReserved = 'no'";
 	 //Run our sql query
 	   $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link));  
 		if($result1 == false)
@@ -46,7 +46,7 @@ if($_POST['isbn'] != null)  { // ISBN
 			echo 'The query by Title failed.';
 			exit();
 		}	
-	$sql_query2 = "Select ISBN, Title, Edition, Publisher, Dept, Cost, NoOfCopy, AvailableCopy From book Where Dept like '%$dept%' AND IsReserved = 'yes'";
+	$sql_query2 = "Select ISBN, Title, Edition, Publisher, Author, Dept, Cost, NoOfCopy, AvailableCopy From book Where Dept like '%$dept%' AND IsReserved = 'yes'";
 	//Run our sql query
    $result2 = mysqli_query ($link, $sql_query2)  or die(mysqli_error($link));  
 	if($result2 == false)
@@ -61,7 +61,7 @@ if($_POST['isbn'] != null)  { // ISBN
 	// store session data
 	$_SESSION['title']=$title;
 	//Our SQL Query
-	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Dept, Cost, NoOfCopy, AvailableCopy From book Where Title like '%$title%' AND IsReserved = 'no'";
+	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, Cost, NoOfCopy, AvailableCopy From book Where Title like '%$title%' AND IsReserved = 'no'";
 	 //Run our sql query
 	   $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link));  
 		if($result1 == false)
@@ -69,7 +69,7 @@ if($_POST['isbn'] != null)  { // ISBN
 			echo 'The query by Title failed.';
 			exit();
 		}	
-	$sql_query2 = "Select ISBN, Title, Edition, Publisher, Dept, Cost, NoOfCopy, AvailableCopy From book Where Title like '%$title%' AND IsReserved = 'yes'";
+	$sql_query2 = "Select ISBN, Title, Edition, Publisher, Author, Dept, Cost, NoOfCopy, AvailableCopy From book Where Title like '%$title%' AND IsReserved = 'yes'";
 	//Run our sql query
    $result2 = mysqli_query ($link, $sql_query2)  or die(mysqli_error($link));  
 	if($result2 == false)
@@ -84,7 +84,7 @@ if($_POST['isbn'] != null)  { // ISBN
 	// store session data
 	$_SESSION['author']=$author;
 	//Our SQL Query
-	$sql_query1 = "Select B.ISBN, Title, Edition, Publisher, CopyID, IsChecked From book AS B, bookcopy AS BC, author AS A Where A.Author = '$author' AND A.ISBN = B.ISBN AND B.ISBN = BC.ISBN AND IsReserved = 0";
+	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, Cost, NoOfCopy, AvailableCopy From book Where Author like '%$author%' AND IsReserved = 'no'";
 	 //Run our sql query
 	   $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link));  
 		if($result1 == false)
@@ -93,7 +93,7 @@ if($_POST['isbn'] != null)  { // ISBN
 			exit();
 		}	
 	//Our SQL Query
-	$sql_query2 = "Select B.ISBN, Title, Edition, Publisher, CopyID, IsChecked From book AS B, bookcopy AS BC, author AS A Where A.Author = '$author' AND A.ISBN = B.ISBN AND B.ISBN = BC.ISBN AND IsReserved = 1";
+	$sql_query2 = "Select ISBN, Title, Edition, Publisher, Author, Dept, Cost, NoOfCopy, AvailableCopy From book Where Author like '%$author%' AND IsReserved = 'yes'";
 	 //Run our sql query
 	   $result2 = mysqli_query ($link, $sql_query2)  or die(mysqli_error($link));  
 		if($result1 == false)
@@ -104,7 +104,7 @@ if($_POST['isbn'] != null)  { // ISBN
 		
 				
 } else {
-	header('Location: AdminSummary.php');
+	header('Location: SearchBooks_admin.php');
 }
 
 ?>
@@ -119,6 +119,7 @@ if($_POST['isbn'] != null)  { // ISBN
     <th>Title of Book</th>
     <th>Edition</th>
     <th>Publisher</th>
+    <th>Author</th>
     <th>Department</th>
     <th>Cost</th>
     <th># Total Copies</th>
@@ -131,6 +132,7 @@ if($_POST['isbn'] != null)  { // ISBN
 	$Title = $row['Title'];
 	$Edition = $row['Edition'];
 	$Publisher = $row['Publisher'];
+	$Author = $row['Author'];
 	$Dept = $row['Dept'];
 	$Cost = $row['Cost'];
 	$NoOfCopy = $row['NoOfCopy'];
@@ -142,6 +144,7 @@ if($_POST['isbn'] != null)  { // ISBN
     <td><?php echo $Title; ?></td>
     <td><?php echo $Edition; ?></td>
     <td><?php echo $Publisher; ?></td>
+    <td><?php echo $Author; ?></td>
     <td><?php echo $Dept; ?></td>
     <td><?php echo $Cost; ?></td>
     <td><?php echo $NoOfCopy; ?></td>
@@ -160,6 +163,7 @@ if($_POST['isbn'] != null)  { // ISBN
     <th>Title of Book</th>
     <th>Edition</th>
     <th>Publisher</th>
+    <th>Author</th>
     <th>Department</th>
     <th>Cost</th>
     <th># Total Copies</th>
@@ -172,6 +176,7 @@ if($_POST['isbn'] != null)  { // ISBN
 	$Title = $row['Title'];
 	$Edition = $row['Edition'];
 	$Publisher = $row['Publisher'];
+	$Author = $row['Author'];
 	$Dept = $row['Dept'];
 	$Cost = $row['Cost'];
 	$NoOfCopy = $row['NoOfCopy'];
@@ -183,6 +188,7 @@ if($_POST['isbn'] != null)  { // ISBN
     <td><?php echo $Title; ?></td>
     <td><?php echo $Edition; ?></td>
     <td><?php echo $Publisher; ?></td>
+    <td><?php echo $Author; ?></td>
     <td><?php echo $Dept; ?></td>
     <td><?php echo $Cost; ?></td>
     <td><?php echo $NoOfCopy; ?></td>
