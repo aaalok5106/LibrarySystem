@@ -70,6 +70,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
+INSERT INTO `book` VALUES ('101','title1','5','hill','Ram, Rahim, Karim','Civil Engineering',56.00,'no',6,1),('102','title2','4','hilly','hira, sita, karim','Computer Science & Engineering',78.00,'yes',2,2);
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,6 +87,7 @@ CREATE TABLE `issue` (
   `IssueDate` date DEFAULT NULL,
   `ReturnDate` date DEFAULT NULL,
   `NoOfExtention` int(11) DEFAULT '0',
+  `ExtRequest` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`Username`,`ISBN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -96,6 +98,7 @@ CREATE TABLE `issue` (
 
 LOCK TABLES `issue` WRITE;
 /*!40000 ALTER TABLE `issue` DISABLE KEYS */;
+INSERT INTO `issue` VALUES ('aalok','101','2017-11-11','2017-11-26',0,'requested'),('mridul','101','2017-11-11','2017-11-26',0,'requested');
 /*!40000 ALTER TABLE `issue` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +129,7 @@ CREATE TABLE `stud_fac_emp` (
 
 LOCK TABLES `stud_fac_emp` WRITE;
 /*!40000 ALTER TABLE `stud_fac_emp` DISABLE KEYS */;
-INSERT INTO `stud_fac_emp` VALUES ('aalok','Aalok Kumar','1997-12-10','aalok@gmail.com','M','A-103, Boys Hostel, IIT Patna, 801103','student','Computer Science & Engineering',10.00);
+INSERT INTO `stud_fac_emp` VALUES ('aalok','Aalok Kumar','1997-12-10','aalok@gmail.com','M','A-103, Boys Hostel, IIT Patna, 801103','student','Computer Science & Engineering',30.00),('mridul','Mridul Kumar','1995-04-18','mridul@gmail.com','M','A-105','student','Electrical Engineering',0.00);
 /*!40000 ALTER TABLE `stud_fac_emp` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +153,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('aalok','aalok123');
+INSERT INTO `user` VALUES ('aalok','aalok123'),('mridul','mridul123');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -163,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-09 23:38:00
+-- Dump completed on 2017-11-11 18:16:47

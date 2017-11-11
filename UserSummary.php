@@ -23,6 +23,12 @@ unset($_SESSION['copyid']);
 </form>
 
 
+<form action="ReIssueRequest_user.php" method="post">
+	<input type="hidden" name="myissuedbooks" value="89">
+	<input type="submit" value="Re-Issue Request"/>
+</form>
+
+
 
 
 

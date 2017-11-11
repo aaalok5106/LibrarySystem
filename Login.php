@@ -16,10 +16,11 @@
 <input type="submit" value="Login"/>
 </form>
 
+<!--
 <form action="NewUserRegistration.php" method="post">
 <input type="submit" value="Create Account"/>
 </form>
-
+-->
 
 
 </body>

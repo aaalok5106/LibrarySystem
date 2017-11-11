@@ -13,19 +13,13 @@ if(isset($_POST['isbn']) and isset($_POST['username']) ){
 	
 	$check_qry="select * from issue where ISBN='$isbn' and Username='$username'";
 	$result0 = mysqli_query ($link, $check_qry)  or die(mysqli_error($link));
-	if(mysqli_num_rows($result0) == 0) echo 'This Book is NOT Issued on this user, Issue first!';
+	if(mysqli_num_rows($result0) == 0) echo 'The Book is NOT Issued on this user, Issue first, OR maybe one of the Username or ISBN entered is incorrect!';
 	else{
-		$check_qry1="select * from user where Username='$username'";
-		$result00 = mysqli_query ($link, $check_qry1)  or die(mysqli_error($link));
-		if(mysqli_num_rows($result00) == 0) echo 'Username does not exist!';
-		else{
-			$check_qry2="select NoOfExtention from issue where Username='$username' and ISBN='$isbn'";
-			$result000 = mysqli_query ($link, $check_qry2)  or die(mysqli_error($link));
-			$row = mysqli_fetch_array($result000);
-			$NoOfExtention = $row['NoOfExtention'];
-			if($NoOfExtention > 3) echo 'Extention limit exceeded for this Book-User combination, so, book cannot be re-issued to this user.';
-			else{
-				$qry1 = "update issue set ReturnDate = adddate(current_date(), interval 15 day), NoOfExtention = NoOfExtention+1 where Username = '$username' and ISBN='$isbn'";// next 15 days limit...
+		// we are not checking No. of Extention limit.
+				$row = mysqli_fetch_array($result0);
+				$returnDate = $row['ReturnDate'];
+				
+				$qry1 = "update issue set ReturnDate = adddate('$returnDate', interval 15 day), NoOfExtention = NoOfExtention+1, ExtRequest='approved' where Username = '$username' and ISBN='$isbn'";// next 15 days limit...
 				
 				$result1 = mysqli_query ($link, $qry1)  or die(mysqli_error($link));
 				if($result1 == false ) {
@@ -35,8 +29,7 @@ if(isset($_POST['isbn']) and isset($_POST['username']) ){
 					//header('Location: Login.php');
 					echo 'Book Re-Issue successful:)';
 				}
-			}
-		}
+			
 	}
 
 }
@@ -60,6 +53,13 @@ if(isset($_POST['isbn']) and isset($_POST['username']) ){
 </table>
 <input type="submit" value="Update"/>
 </form>
+
+
+<form action="AllReIssueRequests_admin.php" method="post">
+	<input type="hidden" name="allreissue" value="60">
+	<input type="submit" value="All Re-Issue Requests">
+</form>
+
 
 
 <form action="AdminSummary.php" method="post">
