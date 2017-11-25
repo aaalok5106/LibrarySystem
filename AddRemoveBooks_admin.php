@@ -21,17 +21,17 @@ if(isset($_POST['isbn']) and isset($_POST['title']) and isset($_POST['author']) 
 	
 	$check_qry="select * from book where ISBN='$isbn'";
 	$result0 = mysqli_query ($link, $check_qry)  or die(mysqli_error($link));
-	if(mysqli_num_rows($result0) > 0) echo 'Book with this ISBN already exists, Try Updating!';
+	if(mysqli_num_rows($result0) > 0) echo '<center><B><br>Book with this ISBN already exists, Try Updating!</B></center><br><br>';
 	else{
 		$insertStatement1 = "INSERT INTO book (ISBN, Title, Edition, Publisher, Author, Dept, Cost, IsReserved, NoOfCopy, AvailableCopy) VALUES ('$isbn', '$title', '$edition', '$publisher', '$author', '$dept', '$cost', '$isreserved', '$noofcopies', '$AvailableCopy')";
 		$result1 = mysqli_query ($link, $insertStatement1)  or die(mysqli_error($link));
 	 
 		if($result1 == false ) {
-			echo 'The query failed.';
+			echo '<center><B><br>The query failed!</B></center><br><br>';
 			exit();
 		} else {
 			//header('Location: Login.php');
-			echo 'Book Insertion successful';
+			echo '<center><B><br>Book Insertion successful</B></center><br><br>';
 		}
 	}
 } else if(isset($_POST['isbn1']) and isset($_POST['noofcopies1'])) {
@@ -40,17 +40,17 @@ if(isset($_POST['isbn']) and isset($_POST['title']) and isset($_POST['author']) 
 	
 	$check_qry="select * from book where ISBN='$isbn1'";
 	$result0 = mysqli_query ($link, $check_qry)  or die(mysqli_error($link));
-	if(mysqli_num_rows($result0) == 0) echo 'Book with this ISBN does not exist';
+	if(mysqli_num_rows($result0) == 0) echo '<center><B><br>Book with this ISBN does not exist</B></center><br><br>';
 	else{
 		$updateStatement1 = "update book set NoOfCopy=NoOfCopy+'$noofcopies1', AvailableCopy=AvailableCopy+'$noofcopies1' where ISBN='$isbn1'";
 		$result1 = mysqli_query ($link, $updateStatement1)  or die(mysqli_error($link));
 	 
 		if($result1 == false ) {
-			echo 'The query failed.';
+			echo '<center><B><br>The query failed!</B></center><br><br>';
 			exit();
 		} else {
 			//header('Location: Login.php');
-			echo 'Book Updation successful';
+			echo '<center><B><br>Book Updation successful!!</B></center><br><br>';
 		}
 	}
 	
@@ -59,7 +59,7 @@ if(isset($_POST['isbn']) and isset($_POST['title']) and isset($_POST['author']) 
 	
 	$check_qry="select * from book where ISBN='$isbn2'";
 	$result0 = mysqli_query ($link, $check_qry)  or die(mysqli_error($link));
-	if(mysqli_num_rows($result0) == 0) echo 'Book with this ISBN does not exist';
+	if(mysqli_num_rows($result0) == 0) echo '<center><B><br>Book with this ISBN does not exist</B></center><br><br>';
 	else{	// delete that ISBN from all tables...
 		$deleteStatement1 = "delete from issue where ISBN='$isbn2'";
 		$deleteStatement2 = "delete from book where ISBN='$isbn2'";
@@ -67,11 +67,11 @@ if(isset($_POST['isbn']) and isset($_POST['title']) and isset($_POST['author']) 
 		$result2 = mysqli_query ($link, $deleteStatement2)  or die(mysqli_error($link));
 	 
 		if($result1 == false || $result2 == false) {
-			echo 'The query failed.';
+			echo '<center><B><br>The query failed!</B></center><br><br>';
 			exit();
 		} else {
 			//header('Location: Login.php');
-			echo 'Book Data Deletion successful';
+			echo '<center><B><br>Book Data Deletion successful!!</B></center><br><br>';
 		}
 	}
 } 

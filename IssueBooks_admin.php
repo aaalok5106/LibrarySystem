@@ -13,22 +13,22 @@ if(isset($_POST['isbn']) and isset($_POST['username1']) ){
 	
 	$check_qry="select * from issue where ISBN='$isbn' and Username='$username1'";
 	$result0 = mysqli_query ($link, $check_qry)  or die(mysqli_error($link));
-	if(mysqli_num_rows($result0) > 0) echo 'One Copy of this Book is Already Issued on your name!';
+	if(mysqli_num_rows($result0) > 0) echo '<center><B><br>One Copy of this Book is Already Issued on your name!</B></center><br><br>';
 	else{
 		$check_qry1="select * from user where Username='$username1'";
 		$result00 = mysqli_query ($link, $check_qry1)  or die(mysqli_error($link));
-		if(mysqli_num_rows($result00) == 0) echo 'Username does not exist!';
+		if(mysqli_num_rows($result00) == 0) echo '<center><B><br>Username does not exist!</B></center><br><br>';
 		else{
 			$check_qry2="select IsReserved, AvailableCopy from book where ISBN='$isbn'";
 			$result000 = mysqli_query ($link, $check_qry2)  or die(mysqli_error($link));
-			if(mysqli_num_rows($result000) == 0) echo 'Invalid ISBN! Please Enter valid ISBN.';
+			if(mysqli_num_rows($result000) == 0) echo '<center><B><br>Invalid ISBN! Please Enter valid ISBN.</B></center><br><br>';
 			else{
 				$row = mysqli_fetch_array($result000);
 				$AvailableCopy = $row['AvailableCopy'];
 				$IsReserved = $row['IsReserved'];
-				if($AvailableCopy == 0) echo 'Currently NO copies of this Book are Available, Try Later.';
+				if($AvailableCopy == 0) echo '<center><B><br>Currently NO copies of this Book are Available, Try Later.</B></center><br><br>';
 				else if($IsReserved == "yes"){
-					echo 'Sorry! Reserved Copy!!! cannot be issued!';
+					echo '<center><B><br>Sorry! Reserved Copy!!! cannot be issued!</B></center><br><br>';
 				}
 				else{
 					$qry1 = "update book set AvailableCopy = AvailableCopy-1 where ISBN='$isbn'";
@@ -36,11 +36,11 @@ if(isset($_POST['isbn']) and isset($_POST['username1']) ){
 					$result1 = mysqli_query ($link, $qry1)  or die(mysqli_error($link));
 					$result2 = mysqli_query ($link, $qry2)  or die(mysqli_error($link));
 					if($result1 == false || $result2 == false) {
-						echo 'The query failed.';
+						echo '<center><B><br>The query failed!</B></center><br><br>';
 						exit();
 					} else {
 						//header('Location: Login.php');
-						echo 'Book Issue successful:)';
+						echo '<center><B><br>Book Issue successful:)</B></center><br><br>';
 					}
 				}
 			}

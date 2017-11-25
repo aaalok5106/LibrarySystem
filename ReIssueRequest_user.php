@@ -13,17 +13,17 @@ if(isset($_POST['isbn1']) ){
 	
 	$check_qry = "select * from issue where Username='$username' and ISBN='$isbn1'";
 	$result0 = mysqli_query ($link, $check_qry)  or die(mysqli_error($link));
-	if(mysqli_num_rows($result0) == 0) echo 'This book is not issued on your name, Please enter valid ISBN';
+	if(mysqli_num_rows($result0) == 0) echo '<center><B><br>This book is not issued on your name, Please enter valid ISBN</B></center><br><br>';
 	else{
 		$row = mysqli_fetch_array($result0);
 		$ExtRequest = $row['ExtRequest'];
 		if($ExtRequest == "requested"){
-			echo 'You have already Requested for Re-Issue, But it is not yet approved :(';
+			echo '<center><B><br>You have already Requested for Re-Issue, But it is not yet approved :(</B></center><br><br>';
 		} else{
 			$qry1 = "update issue set ExtRequest='requested' where Username='$username' and ISBN='$isbn1'";
 			$result1 = mysqli_query ($link, $qry1)  or die(mysqli_error($link));
-			if($result1 == true) echo 'Re-Issue request successfully sent, It will be approved/rejected by Admin. Meanwhile you can see your approval status.';
-			else echo 'Query for Re-Issue request Failed!';
+			if($result1 == true) echo '<center><B><br>Re-Issue request successfully sent, It will be approved/rejected by Admin. Meanwhile you can see your approval status.</B></center><br><br>';
+			else echo '<center><B><br>Query for Re-Issue request Failed!</B></center><br><br>';
 		}
 	}
 
@@ -32,18 +32,18 @@ if(isset($_POST['isbn1']) ){
 	
 	$check_qry = "select * from issue where Username='$username' and ISBN='$isbn2'";
 	$result0 = mysqli_query ($link, $check_qry)  or die(mysqli_error($link));
-	if(mysqli_num_rows($result0) == 0) echo 'This book is not issued on your name, Please enter valid ISBN';
+	if(mysqli_num_rows($result0) == 0) echo '<center><B><br>This book is not issued on your name, Please enter valid ISBN</B></center><br><br>';
 	else{
 		$row = mysqli_fetch_array($result0);
 		$ExtRequest = $row['ExtRequest'];
 		if($ExtRequest == "requested"){
-			echo 'Your last Re-Issue request is not yet approved :(';
+			echo '<center><B><br>Your last Re-Issue request is not yet approved :(</B></center><br><br>';
 		} else if($ExtRequest == "rejected"){
-			echo 'Your last Re-Issue request has been Rejected, Please contact Admin or You can send re-issue request again.';
+			echo '<center><B><br>Your last Re-Issue request has been Rejected, Please contact Admin or You can send re-issue request again.</B></center><br><br>';
 		} else if($ExtRequest == "accepted"){
-			echo 'Your last Re-Issue request has been Accepted :) . You can see your Return deadlines in *My Issued Book* section.';
+			echo '<center><B><br>Your last Re-Issue request has been Accepted :) . You can see your Return deadlines in *My Issued Book* section.</B></center><br><br>';
 		
-		} else echo 'No Re-Issue request has been sent for this Book.';
+		} else echo '<center><B><br>No Re-Issue request has been sent for this Book.</B></center><br><br>';
 		
 	}
 

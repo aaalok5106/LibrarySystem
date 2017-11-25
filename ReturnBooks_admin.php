@@ -28,11 +28,11 @@ if(isset($_POST['isbn']) and isset($_POST['username']) and isset($_POST['penalty
 				$result2 = mysqli_query ($link, $qry2)  or die(mysqli_error($link));
 				$result3 = mysqli_query ($link, $qry3)  or die(mysqli_error($link));
 				if($result1 == false || $result2 == false || $result3 == false) {
-					echo 'The query failed.';
+					echo '<center><B><br>The query failed!</B></center><br><br>';
 					exit();
 				} else {
 					//header('Location: Login.php');
-					echo 'Book Return successful:)';
+					echo '<center><B><br>Book Return successful:)</B></center><br><br>';
 				}
 		}
 	}

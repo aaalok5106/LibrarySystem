@@ -27,21 +27,21 @@ if(isset($_POST['firstname']) and isset($_POST['lastname']) and isset($_POST['em
 		$result0 = mysqli_query ($link, $check_qry)  or die(mysqli_error($link));
 		
 		if(mysqli_num_rows($result0) > 0){
-			echo 'This Username already exists, Try another Username!';
+			echo '<center><B><br>This Username already exists, Try another Username!</B></center><br><br>';
 		} else{
 			$insertStatement1 = "INSERT INTO user (Username, Password) VALUES ('$u_name', '$passwd')";
 			$insertStatement2 = "INSERT INTO stud_fac_emp (Username, Name, DOB, Email, Gender, Address, UserType, Dept) VALUES ('$u_name', '$name', '$DOB', '$email', '$gender', '$address', '$usertype', '$dept')";
 			$result1 = mysqli_query ($link, $insertStatement1)  or die(mysqli_error($link));
 			$result2 = mysqli_query ($link, $insertStatement2)  or die(mysqli_error($link)); 
 			if($result1 == false || $result2 == false) {
-				echo 'The query failed.';
+				echo '<center><B><br>The query failed!</B></center><br><br>';
 				exit();
 			} else {
 				//header('Location: Login.php');
-				echo 'User Successfully Added';
+				echo '<center><B><br>User Successfully Added</B></center><br><br>';
 			}
 		}
-	} else echo 'Password mismatch ERROR!';
+	} else echo '<center><B><br>Password mismatch ERROR!</B></center><br><br>';
 } else if(isset($_POST['u_name1'])){
 	$u_name1 = $_POST['u_name1'];
 	
@@ -49,19 +49,42 @@ if(isset($_POST['firstname']) and isset($_POST['lastname']) and isset($_POST['em
 	$result0 = mysqli_query ($link, $check_qry)  or die(mysqli_error($link));
 	
 	if(mysqli_num_rows($result0) == 0){
-		echo 'This Username does not exist. Please Enter valid Username.';
+		echo '<center><B><br>This Username does not exist. Please Enter valid Username!</B></center><br><br>';
 	} else{
+		$deleteStatement0 = "delete from issue where Username='$u_name1'";
 		$deleteStatement1 = "delete from user where Username='$u_name1'";
 		$deleteStatement2 = "delete from stud_fac_emp where Username='$u_name1'";
 		
+		$result01 = mysqli_query ($link, $deleteStatement0)  or die(mysqli_error($link));
 		$result1 = mysqli_query ($link, $deleteStatement1)  or die(mysqli_error($link));
 		$result2 = mysqli_query ($link, $deleteStatement2)  or die(mysqli_error($link)); 
-		if($result1 == false || $result2 == false) {
-				echo 'The query failed.';
+		if($result01 == false || $result1 == false || $result2 == false) {
+				echo '<center><B><br>The query failed!</B></center><br><br>';
 				exit();
 			} else {
 				//header('Location: Login.php');
-				echo 'User Successfully Removed from Database';
+				echo '<center><B><br>User Successfully Removed from Database</B></center><br><br>';
+			}
+	}
+} else if(isset($_POST['u_name2']) and isset($_POST['amt_paid2'])){
+	$u_name2 = $_POST['u_name2'];
+	$amt_paid2 = $_POST['amt_paid2'];
+	
+	$check_qry = "select * from user where Username='$u_name2'";
+	$result0 = mysqli_query ($link, $check_qry)  or die(mysqli_error($link));
+	
+	if(mysqli_num_rows($result0) == 0){
+		echo '<center><B><br>This Username does not exist. Please Enter valid Username.</B></center><br><br>';
+	} else{
+		
+		$updateStatement1 = "update stud_fac_emp set Penalty=(Penalty-'$amt_paid2') where Username='$u_name2'";
+		
+		$result1 = mysqli_query ($link, $updateStatement1)  or die(mysqli_error($link));
+		if($result1 == false) {
+				echo '<center><B><br>The query failed!</B></center><br><br>';
+				exit();
+			} else {
+				echo '<center><B><br>Amount Paid SUCCESSFUL!!</B></center><br><br>';
 			}
 	}
 }
@@ -165,7 +188,7 @@ body {background-color: #c4def2;}
 
 				<tr>
 					<td>Address</td>
-					<td><textarea name="address" rows="5" cols="30"></textarea></td>
+					<td><textarea name="address" rows="5" cols="30" required></textarea></td>
 				</tr>
 		
 				<tr>
@@ -225,7 +248,23 @@ body {background-color: #c4def2;}
 			<br>
 			<input type="submit" value="Remove" id="submit2"/>
 			</form>
-			
+			<hr><hr>
+			<U><h1>User Penalty Payment</h1></U>
+			<h3>Fill User Details</h3>
+			<form action="" method="post">
+			<table>
+				<tr>
+					<td>Username</td>
+					<td><input type="text" name="u_name2" required/></td>
+				</tr>
+				<tr>
+					<td>Amount Paid</td>
+					<td><input type="number" name="amt_paid2" min="1" step="0.5" required/></td>
+				</tr>
+			</table>
+			<br>
+			<input type="submit" value="Update" id="submit2"/>
+			</form>
 		</center>
 	</td>
 </tr>
