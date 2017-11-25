@@ -9,12 +9,43 @@ $username = $_SESSION['username'];
 ?>
 
 <html>
-<body style="background-color: #5473a5">
+<head>
+	<title> Admin </title>
+	<style type="text/css">
+		body {
+			background: #fff;
+		}
+
+		.body {
+			
+		}
+
+
+		.button input[type=submit]{
+	width: 260px;
+	height: 50px;
+	background: green;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 5px;
+	color: #a18d6c;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+	
+}
+	</style>
+
+
+</head>
+<body>
+<h1>Admin Summary</h1>
 
 <center>
-<br>
-<h1><U>Admin Summary</U></h1>
-<br>
+
+	<div class = "button">
 
 <form action="SearchUser_admin.php" method="post">
 	<input type="submit" value="Search among Users"/>
@@ -37,44 +68,28 @@ $username = $_SESSION['username'];
 	<input type="submit" value="Add or Remove Users"/>
 </form>
 
-
-
-<form action="IssueBooks_admin.php" method="post">
-	<input type="submit" value="Issue or Return Books"/>
-</form>
-
-<!--
 <form action="IssueBooks_admin.php" method="post">
 	<input type="submit" value="Issue Books"/>
 </form>
--->
 
-<form action="AllReIssueRequests_admin.php" method="post">
-		<input type="hidden" name="allreissue" value="60">
-		<input type="submit" value="View All Re-Issue Requests">
-</form>
-
-<!--
 <form action="ReissueBooks_admin.php" method="post">
 	<input type="submit" value="Re-Issue Books"/>
 </form>
 
-
 <form action="ReturnBooks_admin.php" method="post">
 	<input type="submit" value="Return Books"/>
 </form>
--->
 
 
+</center>	
 
-<br><br>
+</div>
+
 
 
 <form action="Login.php" method="post">
 <input type="submit" value="Logout"/>
 </form>
-
-</center>
 
 </body>
 </html>
