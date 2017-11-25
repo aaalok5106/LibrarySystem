@@ -81,120 +81,195 @@ if(isset($_POST['isbn']) and isset($_POST['title']) and isset($_POST['author']) 
 
 
 <html>
+<head>
+<style>
+#tableData2 {
+    background-color:green;
+    width:50%;
+}
+#tableData3 {
+    background-color:red;
+    width:50%;
+}
+#submit1 {
+    background-color: #939aed;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: black;
+    font-family: 'Oswald';
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+#submit2 {
+    background-color: green;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+#submit3 {
+    background-color: red;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+#submitBack {
+    background-color: #000000;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+}
+body {background-color: #939aed;}
+
+</style>
+</head>
 <body>
-<h1>Add Book Section</h1>
-<h3>Fill Book Details</h3>
-
-<form action="" method="post">
-<table>
-<tr>
-    <td>ISBN</td>
-    <td><input type="text" name="isbn" required/></td>
-</tr>
-<tr>
-    <td>Title of Book</td>
-    <td><input type="text" name="title" required/></td>
-</tr>
-
-<tr>
-    <td>Edition</td>
-    <td><input type="text" name="edition" required/></td>
-</tr>
-
-<tr>
-    <td>Publisher</td>
-    <td><input type="text" name="publisher" required/></td>
-</tr>
-
-<tr>
-    <td>Authors</td>
-    <td><input type="text" name="author" required/></td>
-</tr>
-
-<tr>
-    <td>Cost</td>
-    <td><input type="number" name="cost" min="0" step="0.01" required/></td>
-</tr>
-
-<tr>
-    <td># of copies</td>
-    <td><input type="number" name="noofcopies" min="1" step="1" required/></td>
-</tr>
-
-</table>
-
-
-
-<tr>
-    <td>Is the Book Reserved</td>
-</tr>
-
-<select name="isreserved">
-  <option value="no">No</option>
-  <option value="yes">Yes</option>
-</select>
-
-<tr>
-    <td>Book Category</td>
-</tr>
-</table>
-<table>
-<select name="dept">
-  <option value="Computer Science & Engineering">Computer Science & Engineering</option>
-  <option value="Electrical Engineering">Electrical Engineering</option>
-  <option value="Mechanical Engineering">Mechanical Engineering</option>
-  <option value="Civil Engineering">Civil Engineering</option>
-  <option value="Chemical Engineering">Chemical Engineering</option>
-  <option value="Mathematics & Computing">Mathematics & Computing</option>
-  <option value="Mathematics">Mathematics</option>
-  <option value="HSS Department">HSS Department</option>
-  <option value="Mathematics">Mathematics</option>
-  <option value="Physics">Physics</option>
-  <option value="Chemistry">Chemistry</option>
-  <option value="Fictional Books">Fictional Books</option>
-  <option value="Biography">Biography</option>
-</select>
-</table>
-
-
-<input type="submit" value="Submit"/>
-</form>
-
-
-
-<h1>Update Book Section</h1>
+<center>
+<U><h1>Add Book Section</h1></U>
 <h3>Fill Book Details</h3>
 <form action="" method="post">
 <table>
-<tr>
-    <td>ISBN</td>
-    <td><input type="text" name="isbn1" required/></td>
-</tr>
+	<tr>
+		<td>ISBN</td>
+		<td><input type="text" name="isbn" required/></td>
+	</tr>
+	<tr>
+		<td>Title of Book</td>
+		<td><input type="text" name="title" required/></td>
+	</tr>
 
-<tr>
-    <td># of copies added</td>
-    <td><input type="number" name="noofcopies1" min="1" step="1" required/></td>
-</tr>
+	<tr>
+		<td>Edition</td>
+		<td><input type="text" name="edition" required/></td>
+	</tr>
+
+	<tr>
+		<td>Publisher</td>
+		<td><input type="text" name="publisher" required/></td>
+	</tr>
+
+	<tr>
+		<td>Authors</td>
+		<td><input type="text" name="author" required/></td>
+	</tr>
+
+	<tr>
+		<td>Cost</td>
+		<td><input type="number" name="cost" min="0" step="0.01" required/></td>
+	</tr>
+
+	<tr>
+		<td># of copies</td>
+		<td><input type="number" name="noofcopies" min="1" step="1" required/></td>
+	</tr>
+
+	<tr>
+		<td>Is the Book Reserved</td>
+		<td>
+			<select name="isreserved">
+			  <option value="no">No</option>
+			  <option value="yes">Yes</option>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td>Book Category</td>
+		<td>
+			<select name="dept">
+			  <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+			  <option value="Electrical Engineering">Electrical Engineering</option>
+			  <option value="Mechanical Engineering">Mechanical Engineering</option>
+			  <option value="Civil Engineering">Civil Engineering</option>
+			  <option value="Chemical Engineering">Chemical Engineering</option>
+			  <option value="Mathematics & Computing">Mathematics & Computing</option>
+			  <option value="Mathematics">Mathematics</option>
+			  <option value="HSS Department">HSS Department</option>
+			  <option value="Mathematics">Mathematics</option>
+			  <option value="Physics">Physics</option>
+			  <option value="Chemistry">Chemistry</option>
+			  <option value="Fictional Books">Fictional Books</option>
+			  <option value="Biography">Biography</option>
+			</select>
+		</td>
+	</tr>
 </table>
-<input type="submit" value="Update"/>
+<br>
+<input type="submit" value="Submit" id="submit1"/>
 </form>
+</center>
+
+<br>
 
 
-<h1>Delete a Book from Database</h1>
-<h3>Fill Book Details</h3>
-<form action="" method="post">
-<table>
-<tr>
-    <td>ISBN</td>
-    <td><input type="text" name="isbn2" required/></td>
-</tr>
+<table style="width:100%">
+	<tr>
+		<td id="tableData2">
+			<center>
+				<U><h1>Update Book Section</h1></U>
+				<h3>Enter Book Details</h3>
+				<form action="" method="post">
+				<table>
+					<tr>
+						<td>ISBN</td>
+						<td><input type="text" name="isbn1" required/></td>
+					</tr>
+
+					<tr>
+						<td># of copies added</td>
+						<td><input type="number" name="noofcopies1" min="1" step="1" required/></td>
+					</tr>
+				</table>
+				<br>
+				<input type="submit" value="Update" id="submit2"/>
+				</form>
+			</center>
+		</td>
+		<td id="tableData3">
+			<center>
+				<U><h1>Delete Book Section</h1></U>
+				<h3>Enter Book Details</h3>
+				<form action="" method="post">
+				<table>
+					<tr>
+						<td>ISBN</td>
+						<td><input type="text" name="isbn2" required/></td>
+					</tr>
+				</table>
+				<br>
+				<input type="submit" value="Delete" id="submit3"/>
+				</form>
+			</center>
+		</td>
 </table>
-<input type="submit" value="Delete"/>
-</form>
 
+
+<br><br><br>
+<center>
 <form action="AdminSummary.php" method="post">
-<input type="submit" value="Back"/>
+<input type="submit" value="Back" id="submitBack"/>
 </form>
+</center>
 
 </body>
 </html>

@@ -54,35 +54,100 @@ if(isset($_POST['isbn1']) ){
 
 
 <html>
+<head>
+<style>
+#tableData1 {
+    background-color:green;
+    width:50%;
+}
+#tableData2 {
+    background-color:red;
+    width:50%;
+}
+#submit1 {
+    background-color: green;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+#submit2 {
+    background-color: red;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+#submitBack {
+    background-color: #000000;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+}
+body {background-color: #939aed;}
+
+</style>
+</head>
 <body>
 
-<h1>Request Re-Issuing an Issued Book</h1>
-<form action="" method="post">
-<table>
-<tr>
-    <td>ISBN</td>
-    <td><input type="text" name="isbn1" required/></td>
-</tr>
+<br><br>
+<table style="width:100%">
+	<tr>
+		<td id="tableData1">
+			<center>
+				<h1>Request Re-Issue</h1>
+				<form action="" method="post">
+				<table>
+					<tr>
+						<td>ISBN</td>
+						<td><input type="text" name="isbn1" required/></td>
+					</tr>
+				</table>
+				<br>
+				<input type="submit" value="Send Request" id="submit1"/>
+				</form>
+			</center>
+		</td>
+		<td id="tableData2">
+			<center>
+				<h1>Check Re-Issue Approval Status</h1>
+				<form action="" method="post">
+				<table>
+				<tr>
+					<td>ISBN</td>
+					<td><input type="text" name="isbn2" required/></td>
+				</tr>
+				</table>
+				<br>
+				<input type="submit" value="Check Status" id="submit2" />
+				</form>
+			</center>
+		</td>
+	</tr>
 </table>
-<input type="submit" value="Send Request" />
-</form>
 
-
-<h1>Check Re-Issue Approval Status</h1>
-<form action="" method="post">
-<table>
-<tr>
-    <td>ISBN</td>
-    <td><input type="text" name="isbn2" required/></td>
-</tr>
-</table>
-<input type="submit" value="Check Status" />
-</form>
-
-
+<br><br>
+<center>
 <form action="UserSummary.php" method="post">
-<input type="submit" value="Back"/>
+<input type="submit" value="Back" id="submitBack"/>
 </form>
+</center>
 
 </body>
 </html>

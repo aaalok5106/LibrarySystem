@@ -8,7 +8,9 @@ session_start();
 $username = $_SESSION['username'];
 unset($_SESSION['isbn']);
 unset($_SESSION['copyid']);	
-?> 
+?>
+
+
 <html>
 <body>
 <h1>User Summary</h1>
@@ -33,7 +35,7 @@ unset($_SESSION['copyid']);
 
 
 <form action="Login.php" method="post">
-<input type="submit" value="Close"/>
+<input type="submit" value="Logout"/>
 </form>
 
 </body>

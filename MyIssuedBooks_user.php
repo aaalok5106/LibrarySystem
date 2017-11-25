@@ -31,10 +31,48 @@ if($_POST['myissuedbooks'] != null)  {
 ?>
 
 <html>
+<head>
+<style>
+#booksResult {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+#booksResult td, #booksResult th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+#booksResult tr:nth-child(even){background-color: #dbf4f9;}
+#booksResult tr:nth-child(odd){background-color: #dcdff7;}
+#booksResult tr:hover {background-color: #aaf7bd;}
+#booksResult th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+#submitForm {
+    background-color: #000000;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+}
+body {background-color: #e8eff9;}
+h1 {color:red;}
+
+</style>
+</head>
 <body>
 
-<h2>Books Issues under your name</h2>
-<table border="1" style="width:100%">
+<center><I><h1>Books Issued on your Account</h1></I></center>
+<table id="booksResult">
   <tr>
     <th>ISBN</th>
     <th>Title of Book</th>
@@ -76,10 +114,12 @@ if($_POST['myissuedbooks'] != null)  {
 </table>
 
 
-
+<br><br>
+<center>
 <form action="UserSummary.php" method="post">
-<input type="submit" value="Back"/>
+<input type="submit" value="Back" id="submitForm"/>
 </form>
+</center>
 
 </body>
 </html>

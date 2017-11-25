@@ -52,27 +52,62 @@ if(isset($_POST['isbn']) and isset($_POST['username1']) ){
 ?>
 
 <html>
+<head>
+<style>
+#submit1 {
+    background-color: blue;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+#submitBack {
+    background-color: #000000;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+}
+body {background-color: #c4def2;}
+h1 {color: red;}
+</style>
+</head>
 <body>
-<h1>Book Issuing Window</h1>
-<form action="" method="post">
-<table>
-<tr>
-    <td>Username</td>
-    <td><input type="text" name="username1" required/></td>
-</tr>
+<center>
+	<br><br>
+	<I><U><h1>Book Issuing Window</h1></I></U>
+	<br>
+	<form action="" method="post">
+	<table>
+		<tr>
+			<td>Username</td>
+			<td><input type="text" name="username1" required/></td>
+		</tr>
 
-<tr>
-    <td>ISBN</td>
-    <td><input type="text" name="isbn" required/></td>
-</tr>
-</table>
-<input type="submit" value="Update"/>
-</form>
+		<tr>
+			<td>ISBN</td>
+			<td><input type="text" name="isbn" required/></td>
+		</tr>
+	</table>
+	<br>
+	<input type="submit" value="Update" id="submit1"/>
+	</form>
 
-
-<form action="AdminSummary.php" method="post">
-<input type="submit" value="Back"/>
-</form>
+	<br><br>
+	<form action="AdminSummary.php" method="post">
+	<input type="submit" value="Back" id="submitBack"/>
+	</form>
+</center>
 
 </body>
 </html>

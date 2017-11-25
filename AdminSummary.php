@@ -51,7 +51,7 @@ $username = $_SESSION['username'];
 
 
 <form action="Login.php" method="post">
-<input type="submit" value="Close"/>
+<input type="submit" value="Logout"/>
 </form>
 
 </body>
