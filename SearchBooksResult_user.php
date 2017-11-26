@@ -12,7 +12,6 @@ $username = $_SESSION['username'];
 
 if($_POST['isbn'] != null)  { // ISBN
 	$isbn = $_POST['isbn'];  
-	// store session data
 	//Our SQL Query
 	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where ISBN = '$isbn' AND IsReserved = 'no'";
 	//Run our sql query
@@ -40,7 +39,6 @@ if($_POST['isbn'] != null)  { // ISBN
 			
 } elseif ($_POST['dept'] != null) {
 	$dept = $_POST['dept'];  
-	// store session data
 	$_SESSION['dept']=$dept;
 	//Our SQL Query
 	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where Dept like '%$dept%' AND IsReserved = 'no'";
@@ -54,7 +52,6 @@ if($_POST['isbn'] != null)  { // ISBN
 			
 } elseif ($_POST['author'] != null) {	//ChecK it Later...
 	$author = $_POST['author'];  
-	// store session data
 	$_SESSION['author']=$author;
 	//Our SQL Query
 	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where Author like '%$author%' AND IsReserved = 'no'";

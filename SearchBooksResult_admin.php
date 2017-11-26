@@ -12,7 +12,6 @@ $username = $_SESSION['username'];
 
 if($_POST['isbn'] != null)  { // ISBN
 	$isbn = $_POST['isbn'];  
-	// store session data
 	//Our SQL Query
 	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, Cost, NoOfCopy, AvailableCopy From book Where ISBN = '$isbn' AND IsReserved = 'no'";
 	//Run our sql query

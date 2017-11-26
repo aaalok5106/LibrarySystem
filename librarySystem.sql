@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES ('mross','mross123','Mross Pudone','1985-05-15','mross123@gmail.com');
+INSERT INTO `admin` VALUES ('admin','admin','admin','1990-10-10','admin@gmail.com'),('mross','mross123','Mross Pudone','1985-05-15','mross123@gmail.com');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +70,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
-INSERT INTO `book` VALUES ('101','title1','5','hill','Ram, Rahim, Karim','Civil Engineering',56.00,'no',6,1),('102','title2','4','hilly','hira, sita, karim','Computer Science & Engineering',78.00,'yes',2,2);
+INSERT INTO `book` VALUES ('201','Algorithm','5','MGraw Hills','Praveen, Pradeep, Nabeel','Computer Science & Engineering',510.00,'no',10,7),('202','Data Structure','10','MGraw Hills','Dhaked, Pradeep, Nabeel','Computer Science & Engineering',1063.00,'no',80,76),('203','Database Design','11','International Publications','Praveen, Avinash, Sutten','Computer Science & Engineering',807.00,'no',50,46),('204','Basic Mechanics','5','MGraw Hills','Sinku, Pradeep, Sahbaz','Mechanical Engineering',806.00,'no',45,43),('205','Monalisa Art Design','2','Fancy Publication','Skand, Ajay, Sinku','Fictional Books',1100.00,'yes',2,2),('206','One Day in Woods','1','Fancy Publication','Skand, Ajay, Singh','Biography',150.00,'yes',3,3),('207','Database Manipulation','12','Tata Indian Publication','Gonawale, Haripare, Funzit','Computer Science & Engineering',480.00,'yes',4,4),('208','Basic C Learning','6','Tata Indian Publication','Skand, Ajay, Sinku','Computer Science & Engineering',452.00,'no',90,89),('209','House Architecture','13','MGraw Hills','Praveen, Avinash, Sutten','Civil Engineering',1358.00,'no',56,53),('210','Advanced Algebra','9','MGraw Hills','Praveen, Pradeep, Nabeel','Mathematics',1700.00,'no',50,44),('211','Quantum Physics','12','Tata Indian Publication','Avinash, Abhinam, Hiratrew','Physics',1005.00,'no',84,80);
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `issue` (
 
 LOCK TABLES `issue` WRITE;
 /*!40000 ALTER TABLE `issue` DISABLE KEYS */;
-INSERT INTO `issue` VALUES ('aalok','101','2017-11-11','2017-11-26',0,'requested'),('mridul','101','2017-11-11','2017-11-26',0,'requested');
+INSERT INTO `issue` VALUES ('aalok','201','2017-11-26','2018-01-25',3,'approved'),('aalok','202','2017-11-26','2017-12-11',0,'requested'),('aalok','203','2017-11-26','2018-01-10',2,'approved'),('aalok','210','2017-11-26','2017-12-26',1,'requested'),('aalok','211','2017-11-26','2017-12-11',0,NULL),('kriti','202','2017-11-26','2017-12-26',1,'approved'),('kriti','203','2017-11-26','2017-12-11',0,'requested'),('kriti','209','2017-11-26','2017-12-11',0,NULL),('kriti','210','2017-11-26','2017-12-26',1,'approved'),('kriti','211','2017-11-26','2017-12-11',0,'requested'),('mridul','202','2017-11-26','2017-12-11',0,NULL),('mridul','210','2017-11-26','2017-12-11',0,'requested'),('mridul','211','2017-11-26','2018-01-10',2,'requested'),('sinku','209','2017-11-26','2017-12-11',0,NULL),('sinku','210','2017-11-26','2017-12-11',0,NULL),('sinku','211','2017-11-26','2017-12-11',0,NULL),('skand','201','2017-11-26','2017-12-26',1,'requested'),('skand','202','2017-11-26','2017-12-26',1,'requested'),('skand','203','2017-11-26','2017-12-11',0,'requested'),('taylor','201','2017-11-26','2018-01-10',2,'requested'),('taylor','203','2017-11-26','2017-12-26',1,'approved'),('taylor','204','2017-11-26','2017-12-11',0,'requested'),('taylor','210','2017-11-26','2017-12-11',0,'requested'),('zyan','204','2017-11-26','2017-12-11',0,NULL),('zyan','208','2017-11-26','2017-12-11',0,NULL),('zyan','209','2017-11-26','2017-12-11',0,NULL),('zyan','210','2017-11-26','2017-12-11',0,NULL);
 /*!40000 ALTER TABLE `issue` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +129,7 @@ CREATE TABLE `stud_fac_emp` (
 
 LOCK TABLES `stud_fac_emp` WRITE;
 /*!40000 ALTER TABLE `stud_fac_emp` DISABLE KEYS */;
-INSERT INTO `stud_fac_emp` VALUES ('aalok','Aalok Kumar','1997-12-10','aalok@gmail.com','M','A-103, Boys Hostel, IIT Patna, 801103','student','Computer Science & Engineering',30.00),('mridul','Mridul Kumar','1995-04-18','mridul@gmail.com','M','A-105','student','Electrical Engineering',0.00);
+INSERT INTO `stud_fac_emp` VALUES ('aalok','Aalok Mridul','1996-05-17','aalok@gmail.com','M','A-103, Bihta, Patna','student','Computer Science & Engineering',0.00),('abhishek','Abhishek Kumar','1998-11-06','abhishek@gmail.com','M','A-105, Boys Hostel, Patna','faculty','Computer Science & Engineering',0.00),('ajay','Ajay Kumar','1997-12-10','ajay@gmail.com','M','D-108, Faculty Quarter, Patna','faculty','Mathematics',0.00),('avinash','Avinash Karnik','1995-04-18','avinash@gmail.com','M','A-104, Staff Quarter, Patna','faculty','Electrical Engineering',0.00),('devina','Devina Ranjan','1997-12-10','devina@gmail.com','F','D-107, Faculty Quarter, Patna','faculty','Computer Science & Engineering',0.00),('himanshu','Himanshu Barua','1998-11-26','himanshu@gmail.com','M','A-111, Boys Hostel, Patna','student','Mechanical Engineering',0.00),('kriti','Kriti Kumari','1997-12-10','kriti@gmail.com','F','C-108, Girls Hostel, Patna','student','Mechanical Engineering',0.00),('mridul','Mridul Kumar','1995-04-18','mridul@gmail.com','M','A-104, Boys Hostel, Patna','student','Computer Science & Engineering',0.00),('pradeep','Pradeep Kumar','1998-11-06','pradeep@gmail.com','M','A-111, Boys Hostel, Patna','student','Mathematics',0.00),('priya','Priya Shing','1998-11-26','priya@gmail.com','F','C-106, Staff Quarter, Patna','faculty','Mathematics & Computing',0.00),('sinku','Sinku Yadav','1997-12-10','sinku@gmail.com','M','A-106, Boys Hostel, Patna','student','Electrical Engineering',0.00),('skand','Skand Gupta','1996-05-17','skand@gmail.com','M','A-121, Boys Hostel, Patna','student','Electrical Engineering',0.00),('taylor','Taylor Swift','1997-12-10','taylor@gmail.com','F','D-510, Staff Quarter, Patna','faculty','Computer Science & Engineering',0.00),('zyan','Zyan Malik','1996-05-17','zyan@gmail.com','M','A-109, Boys Hostel, Patna','student','Mechanical Engineering',0.00);
 /*!40000 ALTER TABLE `stud_fac_emp` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +153,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('aalok','aalok123'),('mridul','mridul123');
+INSERT INTO `user` VALUES ('aalok','aalok'),('abhishek','abhishek'),('ajay','ajay'),('avinash','avinash'),('devina','devina'),('himanshu','himanshu'),('kriti','kriti'),('mridul','mridul'),('pradeep','pradeep'),('priya','priya'),('sinku','sinku'),('skand','skand'),('taylor','taylor'),('zyan','zyan');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -166,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-11 18:16:47
+-- Dump completed on 2017-11-26 14:26:47

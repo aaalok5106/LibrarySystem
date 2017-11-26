@@ -17,7 +17,7 @@ if($_POST['username'] != null)  {
 	//Our SQL Query
 	$sql_query2 = "select stud_fac_emp.Username, count(ISBN) as noOfIssuedBooks, Name, DOB, Email, Gender, Address, UserType, Dept, Penalty from stud_fac_emp left join issue on stud_fac_emp.Username=issue.Username group by stud_fac_emp.Username having stud_fac_emp.Username = '$username1'";
 	
-	//Run our sql query
+	//Run sql query
    $result2 = mysqli_query ($link, $sql_query2)  or die(mysqli_error($link));  
 	if($result2 == false)
 	{
@@ -26,7 +26,6 @@ if($_POST['username'] != null)  {
 	}						
 } elseif ($_POST['name'] != null) {
 	$name = $_POST['name'];  
-	// store session data
 	$_SESSION['name']=$name;
 	//Our SQL Query	
 	$sql_query2 = "select stud_fac_emp.Username, count(ISBN) as noOfIssuedBooks, Name, DOB, Email, Gender, Address, UserType, Dept, Penalty from stud_fac_emp left join issue on stud_fac_emp.Username=issue.Username group by stud_fac_emp.Username having Name like '%$name%'";
@@ -39,7 +38,6 @@ if($_POST['username'] != null)  {
 	}		
 } elseif ($_POST['department'] != null) {
 	$department = $_POST['department'];  
-	// store session data
 	$_SESSION['department']=$department;
 	//Our SQL Query
 	$sql_query2 = "select stud_fac_emp.Username, count(ISBN) as noOfIssuedBooks, Name, DOB, Email, Gender, Address, UserType, Dept, Penalty from stud_fac_emp left join issue on stud_fac_emp.Username=issue.Username group by stud_fac_emp.Username having Dept like '%$department%'";
@@ -64,7 +62,6 @@ if($_POST['username'] != null)  {
 		}			
 
 } elseif ($_POST['allfac'] != null) {
-	# code...
 	$allfac = $_POST['allfac'];
 	//Our SQL Query
 	$sql_query2 = "select stud_fac_emp.Username, count(ISBN) as noOfIssuedBooks, Name, DOB, Email, Gender, Address, UserType, Dept, Penalty from stud_fac_emp left join issue on stud_fac_emp.Username=issue.Username group by stud_fac_emp.Username having UserType='faculty'";
