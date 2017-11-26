@@ -19,13 +19,46 @@ if ($_POST['allreissue'] != null) {
 	   $result2 = mysqli_query ($link, $sql_query2)  or die(mysqli_error($link));  
 		if($result2 == false)
 		{
-			echo 'The query by AllStudent failed.';
+			echo '<br><center><B>The query by AllStudent failed!</B></center>';
 			exit();
 		}			
 
+} else if(isset($_POST['isbn']) and isset($_POST['username']) ){
+	$isbn = $_POST['isbn'];
+	$username = $_POST['username'];
+	
+	$check_qry="select * from issue where ISBN='$isbn' and Username='$username' and ExtRequest='requested'";
+	$result0 = mysqli_query ($link, $check_qry)  or die(mysqli_error($link));
+	if(mysqli_num_rows($result0) == 0) echo '<br><center><B>The Book cannot be Re-Issued, because...</B><br>1.Username or ISBN INCORRECT!<br>2.Book not issued to user<br>3.User did not request for Re-issue</center>';
+	else{
+		// we are not checking No. of Extention limit.
+				$row = mysqli_fetch_array($result0);
+				$returnDate = $row['ReturnDate'];
+				
+				$qry1 = "update issue set ReturnDate = adddate('$returnDate', interval 15 day), NoOfExtention = NoOfExtention+1, ExtRequest='approved' where Username = '$username' and ISBN='$isbn'";// next 15 days limit...
+				
+				$result1 = mysqli_query ($link, $qry1)  or die(mysqli_error($link));
+				if($result1 == false ) {
+					echo '<br><center><B>The query failed!</B></center>';
+					exit();
+				} else {
+					echo '<br><center><B>Book Re-Issue successful:)</B></center>';
+				}
+			
+	}
+	
+	//Our SQL Query to display updated list of re-issue request again
+	$sql_query2 = "select issue.Username, ISBN, Name, Email, UserType, Dept, Penalty, IssueDate, ReturnDate, NoOfExtention FROM issue inner join stud_fac_emp on issue.Username=stud_fac_emp.Username WHERE ExtRequest='requested'";
+	 //Run our sql query
+	   $result2 = mysqli_query ($link, $sql_query2)  or die(mysqli_error($link));  
+		if($result2 == false)
+		{
+			exit();
+		}		
+
 }
 else{
-	echo 'Sorry! Request cannot be performed.';
+	echo '<br><center><B>Sorry! Request cannot be performed!</B></center>';
 }
 
 
@@ -54,6 +87,18 @@ else{
     background-color: #4CAF50;
     color: white;
 }
+#submit1 {
+    background-color: blue;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 17px;
+    text-decoration: none;
+    cursor: pointer;
+    
+}
 #submitForm {
     background-color: #000000;
     -moz-border-radius: 5px;
@@ -66,17 +111,45 @@ else{
     cursor: pointer;
     border:none;
 }
-body {background-color: #e8eff9;}
+body {background-color: #c4def2;}
 h1 {color:red;}
 
 </style>
 </head>
 <body>
 
-<center><I><h1>Re-Issue Requests</h1></I></center>
+<center>
+	<br>
+	<U><I><h1>Book Re-Issuing Window</h1></I></U>
+	<br>
+	<form action="" method="post">
+	<table>
+		<tr>
+			<td>Username</td>
+			<td><input type="text" name="username" required/></td>
+		</tr>
+
+		<tr>
+			<td>ISBN</td>
+			<td><input type="text" name="isbn" required/></td>
+		</tr>
+	</table>
+	<br>
+	<input type="submit" value="Update" id="submit1"/>
+	</form>
+
+
+	<br>
+	<form action="AdminSummary.php" method="post">
+	<input type="submit" value="Back" id="submitForm"/>
+	</form>
+</center>
+
+<hr><hr>
+
+<center><I><h1>All Re-Issue Requests</h1></I></center>
 <table id="booksResult">
   <tr>
-  	<th>Select</th>
     <th>Username</th>
     <th>ISBN</th>
     <th>Name of User</th>
@@ -105,13 +178,6 @@ h1 {color:red;}
   ?>
   
   <tr>
-  	<td>
-  		<select name="selection">
-		  <option value="accepted">Accept</option>
-		  <option value="rejected">Reject</option>
-		</select>
-		</form>
-	</td>
     <td><?php echo $Username; ?></td>
     <td><?php echo $ISBN; ?></td>
     <td><?php echo $Name; ?></td>
@@ -128,13 +194,6 @@ h1 {color:red;}
 ?>
 </table>
 
-
-<br><br>
-<center>
-<form action="ReissueBooks_admin.php" method="post">
-<input type="submit" value="Back" id="submitForm"/>
-</form>
-</center>
 
 </body>
 </html>

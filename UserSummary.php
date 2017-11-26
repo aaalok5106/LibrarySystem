@@ -6,14 +6,17 @@ include 'dbinfo.php';
 session_start(); 
 //connect to the db 
 $username = $_SESSION['username'];
-unset($_SESSION['isbn']);
-unset($_SESSION['copyid']);	
+
 ?>
 
 
 <html>
-<body>
-<h1>User Summary</h1>
+<body style="background-color: #726899">
+
+<center>
+<br>
+<h1><U>User Summary</U></h1>
+<br>
 
 <form action="SearchBooks_user.php" method="post">
 	<input type="submit" value="Search Books"/>
@@ -32,11 +35,14 @@ unset($_SESSION['copyid']);
 
 
 
-
+<br><br>
 
 <form action="Login.php" method="post">
 <input type="submit" value="Logout"/>
 </form>
+
+</center>
+
 
 </body>
 </html>

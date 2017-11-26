@@ -9,8 +9,12 @@ $username = $_SESSION['username'];
 ?>
 
 <html>
-<body>
-<h1>Admin Summary</h1>
+<body style="background-color: #5473a5">
+
+<center>
+<br>
+<h1><U>Admin Summary</U></h1>
+<br>
 
 <form action="SearchUser_admin.php" method="post">
 	<input type="submit" value="Search among Users"/>
@@ -33,26 +37,44 @@ $username = $_SESSION['username'];
 	<input type="submit" value="Add or Remove Users"/>
 </form>
 
+
+
+<form action="IssueBooks_admin.php" method="post">
+	<input type="submit" value="Issue or Return Books"/>
+</form>
+
+<!--
 <form action="IssueBooks_admin.php" method="post">
 	<input type="submit" value="Issue Books"/>
 </form>
+-->
 
+<form action="AllReIssueRequests_admin.php" method="post">
+		<input type="hidden" name="allreissue" value="60">
+		<input type="submit" value="View All Re-Issue Requests">
+</form>
+
+<!--
 <form action="ReissueBooks_admin.php" method="post">
 	<input type="submit" value="Re-Issue Books"/>
 </form>
 
+
 <form action="ReturnBooks_admin.php" method="post">
 	<input type="submit" value="Return Books"/>
 </form>
+-->
 
 
 
-
+<br><br>
 
 
 <form action="Login.php" method="post">
 <input type="submit" value="Logout"/>
 </form>
+
+</center>
 
 </body>
 </html>

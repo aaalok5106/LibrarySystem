@@ -14,7 +14,7 @@ if($_POST['isbn'] != null)  { // ISBN
 	$isbn = $_POST['isbn'];  
 	// store session data
 	//Our SQL Query
-	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where ISBN = '$isbn' AND IsReserved = 0";
+	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where ISBN = '$isbn' AND IsReserved = 'no'";
 	//Run our sql query
     $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link));
     
@@ -29,7 +29,7 @@ if($_POST['isbn'] != null)  { // ISBN
 	// store session data
 	$_SESSION['title']=$title;
 	//Our SQL Query
-	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where Title like '%$title%' AND IsReserved = 0";
+	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where Title like '%$title%' AND IsReserved = 'no'";
 	 //Run our sql query
 	   $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link));  
 		if($result1 == false)
@@ -39,11 +39,11 @@ if($_POST['isbn'] != null)  { // ISBN
 		}	
 			
 } elseif ($_POST['dept'] != null) {
-	$title = $_POST['dept'];  
+	$dept = $_POST['dept'];  
 	// store session data
 	$_SESSION['dept']=$dept;
 	//Our SQL Query
-	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where Title like '%$dept%' AND IsReserved = 0";
+	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where Dept like '%$dept%' AND IsReserved = 'no'";
 	 //Run our sql query
 	   $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link));  
 		if($result1 == false)
@@ -57,7 +57,7 @@ if($_POST['isbn'] != null)  { // ISBN
 	// store session data
 	$_SESSION['author']=$author;
 	//Our SQL Query
-	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where Author like '%$author%' AND IsReserved = 0";
+	$sql_query1 = "Select ISBN, Title, Edition, Publisher, Author, Dept, AvailableCopy From book Where Author like '%$author%' AND IsReserved = 'no'";
 	 //Run our sql query
 	   $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link));  
 		if($result1 == false)
